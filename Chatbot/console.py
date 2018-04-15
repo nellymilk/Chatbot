@@ -14,7 +14,7 @@ class Console(object):
     Build some nlp function as an package.
     """
 
-    def __init__(self,model_path="model/ch-corpus-3sg.bin",
+    def __init__(self,model_path="model/word2vec.bin",
                  rule_path="RuleMatcher/rule/",
                  stopword="jieba_dict/stopword.txt",
                  jieba_dic="jieba_dict/dict.txt.big",
@@ -174,7 +174,7 @@ class Console(object):
             keyword = self.word_segment(sentence)
 
         if search_from is None: # use for classification (rule matching).
-            result_list,path = self.rb.match(keyword,threshold=0.1)
+            result_list,path = self.rb.match(keyword,threshold=0.1) #rulebase.RuleBase()
         else:  # use for reasoning.
             result_list,path = self.rb.match(keyword,threshold=0.1,root=search_from)
 

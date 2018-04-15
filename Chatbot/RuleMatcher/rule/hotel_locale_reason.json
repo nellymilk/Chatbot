@@ -1,5 +1,5 @@
 [
-  {
+      {
           "domain": "地點描述",
           "response": [],
           "concepts": [
@@ -17,7 +17,7 @@
           "response": [],
           "concepts": [
               "台北市",
-			  "台北"
+			        "台北"
           ],
           "children": []
       },
@@ -26,7 +26,7 @@
           "response": [],
           "concepts": [
               "台中市",
-			  "台中"
+			        "台中"
           ],
           "children": []
       },
@@ -35,15 +35,16 @@
           "response": [],
           "concepts": [
               "台南市",
-			  "台南"
+			        "台南"
           ],
           "children": []
-      },{
+      },
+      {
           "domain": "高雄市",
           "response": [],
           "concepts": [
               "高雄市",
-			  "高雄"
+			        "高雄"
           ],
           "children": []
       }

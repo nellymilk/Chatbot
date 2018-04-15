@@ -1,0 +1,19 @@
+[
+      {
+          "domain": "機器",
+          "response": "回傳訂閱機器",
+          "concepts": [
+              "機器","裝置","儀器"
+          ],
+          "children": []
+      },
+      {
+          "domain": "時間",
+          "response": "回傳訂閱時間",
+          "concepts": [
+              "時間"
+          ],
+          "children": []
+      }      
+
+]

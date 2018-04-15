@@ -1,6 +1,6 @@
 import Chatbot.chatbot as Chatbot
 
-chatter = Chatbot.Chatbot(build_console=False)
+chatter = Chatbot.Chatbot(build_console=True) #default: False
 
 print("Hello, I am Mianbot.")
 

@@ -209,10 +209,13 @@ class RuleBase(object):
         Args:
             path: the path of the model.
         """
-        try:
-            self.model = models.Word2Vec.load(path)  # cur
-        except:
+        try:            
+            #self.model = models.Word2Vec.load(path)  # cur
             self.model = models.KeyedVectors.load_word2vec_format(path, binary=True)  # old
+            
+        except:
+            #self.model = models.KeyedVectors.load_word2vec_format(path, binary=True)
+            self.model = models.Word2Vec.load(path)  # cur
 
     def match(self, sentence, topk=1, threshold=0, root=None):
 
@@ -239,6 +242,7 @@ class RuleBase(object):
         else:
             focused_rule = [self.rules[root]]
 
+        tag_children = False
         while not at_leaf_node:
 
             at_leaf_node = True
@@ -247,25 +251,41 @@ class RuleBase(object):
                 result_list.append(rule.match(sentence, threshold))
 
             result_list = sorted(result_list, reverse=True , key=lambda k: k[0])
-            top_domain  = result_list[0][1] # get the best matcher's term.
+            top_domain  = result_list[0][1] # get the best matcher's term.           
 
             # Output matching_log.
-            log.write("---")
+            log.write("---\n")
             for result in result_list:
                 s,d,m = result
                 log.write("Sim: %f, Domain: %s, Matchee: %s\n" % (s,d,m))
-            log.write("---")
-
+            log.write("---\n\n")
 
             if self.rules[top_domain].has_child():
+
+                tag_children = True
+                pre_domain = top_domain
+                pre_value = float(result_list[0][0])
+
                 result_list = []
                 term_trans += top_domain+'>'
-                at_leaf_node = False
+                at_leaf_node = False               
 
                 # travel to the best node's children.
                 focused_rule = []
                 for rule_id in self.rules[top_domain].children:
                     focused_rule.append(self.rules[rule_id])
             else:
-                term_trans += top_domain
+                term_trans += top_domain                
+
+                if float(result_list[0][0]) < 0.6:
+                    if tag_children:
+                        if pre_value > 0.3:
+                            print("\noutput: " + self.rules[pre_domain].response + '\n')
+                        else:
+                            print("我不懂你在說什麼")
+                    else:
+                        print("我不懂你在說什麼")                                                        
+                else:
+                    print("\noutput: " + self.rules[top_domain].response + '\n')            
+
         return [result_list,term_trans]

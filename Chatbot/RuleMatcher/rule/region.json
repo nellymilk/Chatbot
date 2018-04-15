@@ -1,0 +1,27 @@
+[
+{
+		"domain": "台北",
+		"response": "回傳台北天氣狀況",
+		"concepts": [
+			"台北"
+		],
+		"children": []
+	},
+{
+		"domain": "台中",
+		"response": "回傳台中天氣狀況",
+		"concepts": [
+			"台中"
+		],
+		"children": []
+	},
+{
+		"domain": "高雄",
+		"response": "回傳高雄天氣狀況",
+		"concepts": [
+			"高雄"
+		],
+		"children": []
+	}
+
+]

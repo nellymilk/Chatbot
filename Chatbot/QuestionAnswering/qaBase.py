@@ -40,7 +40,7 @@ class Answerer(object):
 
     def getGeneralQA(self,query,threshold=0):
 
-        title,index = self.matcher.match(query)
+        title,index = self.matcher.match(query) #getMatcher("bm25")
         sim = self.matcher.getSimilarity()
         if sim < threshold:
             return None,0

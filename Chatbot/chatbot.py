@@ -9,7 +9,7 @@ import QuestionAnswering.qaBase as qa
 
 class Chatbot(object):
 
-    def __init__(self, name="MianBot", build_console=True, w2v_model_path="model/ch-corpus-3sg.bin"):
+    def __init__(self, name="AirBox", build_console=True, w2v_model_path="model/word2vec.bin"):
 
         """
         # Args:
@@ -45,7 +45,7 @@ class Chatbot(object):
         if not self.github_qa_unupdated:
 
             try:
-                self.answerer = qa.Answerer()
+                self.answerer = qa.Answerer() #import QuestionAnswering.qaBase as qa
             except Exception as exc:
                 print("[QA] 請確認問答資料集的目錄結構是否正確")
                 print("[QA] 如尚未取得問答資料集, 請至 Github: zake7749/Chatbot/Readme.md 中下載, 或將 self.github_qa_unupdated 設為 true")
@@ -181,7 +181,7 @@ class Chatbot(object):
         if self.github_qa_unupdated:
             return None, 0
 
-        response,sim = self.answerer.getResponse(sentence)
+        response,sim = self.answerer.getResponse(sentence) #QuestionAnswering.qaBase .Answerer
 
         if sim > threshold:
             return response,sim
